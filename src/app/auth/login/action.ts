@@ -1,8 +1,6 @@
+import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import { env } from "process"
-
-
-
 
 export const loginAction = async (data: FormData) => {
   "use server"
@@ -17,10 +15,14 @@ export const loginAction = async (data: FormData) => {
       password: pass
     })
   })
+  const json = await res.json()
 
   if (res.status != 201) {
     redirect("/auth/login/fail")
   }
+
+  const ck = await cookies()
+  ck.set("session", json.id)
 
   redirect("/")
 

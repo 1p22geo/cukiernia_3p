@@ -34,7 +34,7 @@ export const signupAction = async (data: FormData) => {
       password: pass
     })
   })
-  const loginData = await res.json()
+  const loginData = await loginRes.json()
 
   const ck = await cookies()
   ck.set("session", loginData.id)

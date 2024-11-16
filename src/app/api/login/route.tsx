@@ -45,6 +45,8 @@ export const POST = async (req: NextRequest) => {
     expire: Date.now() + 24 * 60 * 60 * 1000
   })
 
+  console.log(insertedId)
+
 
   await client.close()
   const res = NextResponse.json({ "status": "session created", id: insertedId }, { status: 201 })
