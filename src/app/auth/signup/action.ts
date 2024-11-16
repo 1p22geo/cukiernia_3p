@@ -3,8 +3,6 @@ import { redirect } from "next/navigation"
 import { env } from "process"
 
 
-
-
 export const signupAction = async (data: FormData) => {
   "use server"
 
@@ -20,6 +18,10 @@ export const signupAction = async (data: FormData) => {
       email: mail
     })
   })
+
+  if (res.status == 409) {
+    redirect("/auth/signup/exists")
+  }
 
   if (res.status != 201) {
     redirect("/auth/signup/fail")

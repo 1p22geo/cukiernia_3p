@@ -24,6 +24,20 @@ export const POST = async (req: NextRequest) => {
 
   const db = client.db("cukiernia")
   const users = db.collection("users")
+  const user = await users.findOne({
+    $or: [
+      {
+        username: data.username
+      },
+      {
+        email: data.email
+      }
+    ]
+  })
+  if (user) {
+    return NextResponse.json({ "status": "error", "error": "user already exists" }, { status: 409 })
+  }
+
 
   const { insertedId } = await users.insertOne({
     username: data.username,
