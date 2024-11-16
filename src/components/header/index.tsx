@@ -1,3 +1,5 @@
+"use client"
+
 export const Header = (props: {
   user: string | null
 }) => {
