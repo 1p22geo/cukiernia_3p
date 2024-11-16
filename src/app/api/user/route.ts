@@ -4,6 +4,21 @@ import { NextRequest, NextResponse } from "next/server";
 import { env } from "process";
 
 
+export interface UserRouteResponse {
+  type: string;
+  user: {
+    _id: string;
+    username: string;
+    email: string;
+  };
+  session: {
+    _id: string;
+    user: string;
+    created: number;
+    expire: number;
+  }
+}
+
 // there's like 10 CVEs sitting in this route. But it's useful.
 
 export const GET = async (request: NextRequest) => {

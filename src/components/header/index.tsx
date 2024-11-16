@@ -7,7 +7,10 @@ export const Header = (props: {
     <a href="/" className="font-xl hover:underline mr-auto">Cukiernia 3P</a>
     {props.user
       ?
-      <></>
+      <>
+        <div className="text-red-900">Zalogowano jako <span className="text-black font-bold">{props.user}</span></div>
+        <a href="/auth/logout" className="bg-red-500 hover:bg-red-600 p-1 rounded-md">Wyloguj się</a>
+      </>
       :
       <>
         <a href="/auth/login" className="bg-red-500 hover:bg-red-600 p-1 rounded-md">Zaloguj się</a>
