@@ -34,7 +34,7 @@ export const POST = async (req: NextRequest) => {
   })
 
   if (!user || !bcrypt.compareSync(data.password, user.hash)) {
-    // this has to be a single if so that even with a debugger
+    // this has to be a single `if` so that even with a debugger
     // wrong-user and wrong-password messages cannot be told apart
     return NextResponse.json({ "status": "error", "error": "authentication failure" }, { status: 401 })
   }
