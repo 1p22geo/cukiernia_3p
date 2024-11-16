@@ -18,6 +18,10 @@ export const POST = async (req: NextRequest) => {
   const users = db.collection("users")
   const sessions = db.collection("sessions")
 
+  if (!data.password || !data.username) {
+    return NextResponse.json({ "status": "error", "error": "no credentials supplied" }, { status: 400 })
+  }
+
   const user = await users.findOne({
     $or: [
       {
@@ -29,11 +33,9 @@ export const POST = async (req: NextRequest) => {
     ]
   })
 
-  if (!user) {
-    return NextResponse.json({ "status": "error", "error": "authentication failure" }, { status: 401 })
-  }
-
-  if (!bcrypt.compareSync(data.password, user.hash)) {
+  if (!user || !bcrypt.compareSync(data.password, user.hash)) {
+    // this has to be a single if so that even with a debugger
+    // wrong-user and wrong-password messages cannot be told apart
     return NextResponse.json({ "status": "error", "error": "authentication failure" }, { status: 401 })
   }
 
@@ -45,5 +47,9 @@ export const POST = async (req: NextRequest) => {
 
 
   await client.close()
-  return NextResponse.json({ "status": "session created", id: insertedId })
+  const res = NextResponse.json({ "status": "session created", id: insertedId }, { status: 201 })
+  res.cookies.set("session", insertedId.toString())
+
+  return res
+
 }

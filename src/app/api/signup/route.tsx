@@ -32,5 +32,5 @@ export const POST = async (req: NextRequest) => {
   })
 
   await client.close()
-  return NextResponse.json({ "status": "user created", id: insertedId })
+  return NextResponse.json({ "status": "user created", id: insertedId }, { status: 201 })
 }
