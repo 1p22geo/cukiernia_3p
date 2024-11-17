@@ -8,9 +8,9 @@ import { ProductInfo } from "./product";
 import { LoadingGIF } from "@ck/components/loadingGIF";
 
 export default async function ProductPage({
-  params: { id },
+  params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
   const ck = await cookies();
 
@@ -23,6 +23,7 @@ export default async function ProductPage({
     ).json();
   }
 
+  const id = (await params).id
   if (!id) {
     redirect("/");
   }

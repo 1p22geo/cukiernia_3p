@@ -5,7 +5,7 @@ import Link from "next/link";
 export const ProductInfo = ({ product }: { product: Product }) => {
   return (
     <div>
-      <Link href="/" className="text-right w-full block hover:underline">
+      <Link href="/" className="text-right w-full block hover:underline font-semibold">
         Wróć do produktów
       </Link>
       <h1 className="text-2xl mb-8">{product.name}</h1>
@@ -15,9 +15,11 @@ export const ProductInfo = ({ product }: { product: Product }) => {
           <Image
             src={`https://picsum.photos/400?${k}`}
             width={200}
+            height={200}
             key={k}
             className="rounded-xl p-2"
             alt={`product image #${k}`}
+            loading="eager"
           />
         ))}
       </div>
