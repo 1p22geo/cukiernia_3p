@@ -26,6 +26,9 @@ export const GET = async (request: NextRequest) => {
   const client = new MongoClient(uri)
   await client.connect()
   const ck = await cookies()
+  if (!ck.get("session")?.value) {
+    return NextResponse.json({ "status": "No session cookie" }, { status: 401 })
+  }
   const sessionID = new ObjectId(ck.get("session")?.value)
 
   const db = client.db("cukiernia")
