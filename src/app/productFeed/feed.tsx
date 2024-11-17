@@ -26,7 +26,7 @@ export const ProductFeed = async ({ login }: { login: UserRouteResponse }) => {
 
   await client.close()
 
-  return <div className="flex flex-col items-center gap-8 w-screen">
+  return <div className="flex flex-col items-center gap-8 w-full">
     <div className="w-full">
       <h2>Wybór dla ciebie, <span className="italic">{login.user.username}</span></h2>
       <div className="flex flex-row items-center gap-4">
