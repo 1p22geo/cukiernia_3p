@@ -6,6 +6,9 @@ import { env } from "process";
 import { Suspense } from "react";
 import { ProductInfo } from "./product";
 import { LoadingGIF } from "@ck/components/loadingGIF";
+import { addProductToOrder } from "./addProduct";
+import { UserRouteResponse } from "@ck/app/api/user/route";
+import { ObjectId } from "mongodb";
 
 export default async function ProductPage({
   params,
@@ -14,7 +17,7 @@ export default async function ProductPage({
 }) {
   const ck = await cookies();
 
-  let login = null;
+  let login: null | UserRouteResponse = null;
   if (ck.get("session")?.value) {
     login = await (
       await fetch(`${env.SELF_URI ?? "localhost:3000"}/api/user`, {
@@ -48,6 +51,15 @@ export default async function ProductPage({
             }
           >
             <ProductInfo product={product} />
+            <form action={async () => {
+              "use server"
+
+              addProductToOrder(new ObjectId(id), login.user._id)
+            }}>
+              <input type="submit" id="submit" className="sr-only" />
+              <label htmlFor="submit" className="bg-red-500 hover:bg-red-600 p-1 rounded-md cursor-pointer">Dodaj do koszyka</label>
+            </form>
+
           </Suspense>
         ) : (
           <Suspense
