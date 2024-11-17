@@ -1,5 +1,3 @@
 export const LandingPage = () => {
-  return <>
-    to be continued
-  </>
-}
+  return <>to be continued</>;
+};

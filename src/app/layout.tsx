@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { env } from "process";
-import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
   title: "Cukiernia 3P",
@@ -13,14 +11,9 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
     <html lang="en">
-      <body
-        className="antialiased"
-      >
-        {children}
-      </body>
-    </html >
+      <body className="antialiased">{children}</body>
+    </html>
   );
 }

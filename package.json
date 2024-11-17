@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "prettier": "prettier -c .",
+    "prettier:fix": "prettier -w ."
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -23,6 +26,7 @@
     "eslint": "^8",
     "eslint-config-next": "15.0.3",
     "postcss": "^8",
+    "prettier": "^3.3.3",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   },
