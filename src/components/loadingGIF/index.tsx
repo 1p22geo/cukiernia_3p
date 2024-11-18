@@ -5,6 +5,7 @@ export const LoadingGIF = ({ hidden }: { hidden?: boolean }) => (
     hidden={hidden}
     width={100}
     height={100}
+    loading="eager"
     alt="loading gif"
   />
 );

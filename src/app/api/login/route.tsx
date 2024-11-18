@@ -50,12 +50,11 @@ export const POST = async (req: NextRequest) => {
   }
 
   const { insertedId } = await sessions.insertOne({
-    user: data.username,
+    user: user.username,
     created: Date.now(),
     expire: Date.now() + 24 * 60 * 60 * 1000,
   });
 
-  console.log(insertedId);
 
   await client.close();
   const res = NextResponse.json(
