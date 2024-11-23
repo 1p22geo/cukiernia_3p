@@ -4,5 +4,6 @@ export interface Product {
   description: string;
   category: string;
   supplier: string;
+  price: number;
   added: number;
 }

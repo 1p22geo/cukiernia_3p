@@ -8,7 +8,7 @@ export const ProductInfo = ({ product }: { product: Product }) => {
       <Link href="/" className="text-right w-full block hover:underline font-semibold">
         Wróć do produktów
       </Link>
-      <h1 className="text-2xl mb-8">{product.name}</h1>
+      <h1 className="text-2xl mb-8">{product.name} - {product.price.toFixed(2)} zł</h1>
       <h2 className="text-lg font-semibold mb-2">Zdjęcia produktu</h2>
       <div className="flex flex-row w-full overflow-x-scroll">
         {Array.from(Array(10).keys()).map((k) => (
