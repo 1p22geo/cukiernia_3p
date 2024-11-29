@@ -7,8 +7,8 @@ export const GET = async () => {
   const uri = env.MONGODB_URI
     ? env.MONGODB_URI
     : (() => {
-        throw Error("no mongodb URI, set MONGODB_URI environment variable");
-      })();
+      throw Error("no mongodb URI, set MONGODB_URI environment variable");
+    })();
   const client = new MongoClient(uri);
   await client.connect();
   const ck = await cookies();
@@ -17,7 +17,12 @@ export const GET = async () => {
   const db = client.db("cukiernia");
   const sessions = db.collection("sessions");
 
-  const session = await sessions.findOne({ _id: sessionID });
+  const session = await sessions.findOne({
+    _id: sessionID,
+    expire: {
+      $gt: Date.now() // czy nam sesja nie wyexpirowała
+    }
+  });
   if (!session) {
     return NextResponse.json({ status: "session not found" }, { status: 404 });
   }

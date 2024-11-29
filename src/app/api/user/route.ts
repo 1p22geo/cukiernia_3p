@@ -25,8 +25,8 @@ export const GET = async () => {
   const uri = env.MONGODB_URI
     ? env.MONGODB_URI
     : (() => {
-        throw Error("no mongodb URI, set MONGODB_URI environment variable");
-      })();
+      throw Error("no mongodb URI, set MONGODB_URI environment variable");
+    })();
   const client = new MongoClient(uri);
   await client.connect();
   const ck = await cookies();
@@ -43,6 +43,9 @@ export const GET = async () => {
       {
         $match: {
           _id: new ObjectId(sessionID),
+          expire: {
+            $gt: Date.now() // czy nam sesja nie wyexpirowała
+          }
         },
       },
       {
