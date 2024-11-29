@@ -8,7 +8,7 @@ export const OrderInfo = async ({ products }: { products: Product[] }) => {
     <div className="flex flex-row items-center gap-4">
       {products.map((produkt) => (
         <div key={produkt._id}>
-          <ProductCard>{produkt}</ProductCard>
+          <ProductCard button={{ text: "Usuń z koszyka", url: `/api/order/${produkt._id}/del`, init: { method: "POST" } }} >{produkt}</ProductCard>
         </div>
       ))}
     </div>

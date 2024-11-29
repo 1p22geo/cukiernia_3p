@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { env } from "process";
 
 
-export const GET = async (_: NextRequest, { params }: { params: Promise<{ id: string }> }) => {
+export const POST = async (_: NextRequest, { params }: { params: Promise<{ id: string }> }) => {
   const uri = env.MONGODB_URI
     ? env.MONGODB_URI
     : (() => {

@@ -44,7 +44,7 @@ export const ProductFeed = async ({ login }: { login: UserRouteResponse }) => {
         <div className="flex flex-row items-center gap-4">
           {list.map((produkt) => (
             <div key={produkt._id}>
-              <ProductCard>{produkt}</ProductCard>
+              <ProductCard button={{ text: "Dodaj do koszyka", url: `/api/order/${produkt._id}/add`, init: { method: "POST" } }}>{produkt}</ProductCard>
             </div>
           ))}
         </div>
