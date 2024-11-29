@@ -26,3 +26,5 @@ export const addProductToOrder = async (id: ObjectId, uid: ObjectId) => {
 
   await client.close()
 }
+
+export const createAddProduct = (id: ObjectId | string, uid: ObjectId | string) => async () => { "use server"; addProductToOrder(new ObjectId(id), new ObjectId(uid)) }

@@ -1,5 +1,6 @@
 import { UserRouteResponse } from "@ck/app/api/user/route";
 import { ProductCard } from "@ck/components/productCard";
+import { addProductToOrder, createAddProduct } from "@ck/lib/addProduct";
 import { Product } from "@ck/utils/types/product";
 import { MongoClient } from "mongodb";
 import { env } from "process";
@@ -8,8 +9,8 @@ export const ProductFeed = async ({ login }: { login: UserRouteResponse }) => {
   const uri = env.MONGODB_URI
     ? env.MONGODB_URI
     : (() => {
-        throw Error("no mongodb URI, set MONGODB_URI environment variable");
-      })();
+      throw Error("no mongodb URI, set MONGODB_URI environment variable");
+    })();
   const client = new MongoClient(uri);
   await client.connect();
 
@@ -40,7 +41,10 @@ export const ProductFeed = async ({ login }: { login: UserRouteResponse }) => {
         <div className="flex flex-row items-center gap-4">
           {list.map((produkt) => (
             <div key={produkt._id}>
-              <ProductCard>{produkt}</ProductCard>
+              <ProductCard button={{
+                node: <>Dodaj do koszyka</>,
+                action: createAddProduct(produkt._id, login.user._id)
+              }}>{produkt}</ProductCard>
             </div>
           ))}
         </div>
