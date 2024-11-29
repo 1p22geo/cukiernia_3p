@@ -1,7 +1,6 @@
 import { UserRouteResponse } from "@ck/app/api/user/route";
 import { ProductCard } from "@ck/components/productCard";
-import { addProductToOrder, createAddProduct } from "@ck/lib/addProduct";
-import { Product } from "@ck/utils/types/product";
+import { Product, ProductSanitized } from "@ck/utils/types/product";
 import { MongoClient } from "mongodb";
 import { env } from "process";
 
@@ -16,10 +15,10 @@ export const ProductFeed = async ({ login }: { login: UserRouteResponse }) => {
 
   // tu powinno być ai do dobierania produktów dla użytkownika
   const db = client.db("cukiernia");
-  const collection = db.collection("products");
+  const collection = db.collection<ProductSanitized>("products");
   // ale nie ma
 
-  const list = (await collection
+  const list: ProductSanitized[] = (await collection
     .aggregate([
       {
         $sample: {
@@ -27,10 +26,10 @@ export const ProductFeed = async ({ login }: { login: UserRouteResponse }) => {
         },
       },
     ])
-    .toArray()).map((prod) => ({
+    .toArray() as Product[]).map((prod) => ({
       ...prod,
       _id: prod._id.toString()
-    })) as Product[]; // trust me bro, the database entries follow the schema
+    }))
 
   await client.close();
 

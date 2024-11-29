@@ -31,8 +31,9 @@ export const ProductInfo = ({ product }: { product: Product }) => {
       <ul className="list-disc p-2 px-4">
         <li>Kategoria: {product.category}</li>
         <li>Producent: {product.supplier}</li>
-        <li>Dodano: {new Date(product.added * 1000).toISOString()}</li>
+        <li>Dodano: {new Date(product.added).toISOString()}</li>
       </ul>
+
     </div>
   );
 };

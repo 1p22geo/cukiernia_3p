@@ -1,7 +1,7 @@
 "use client"
-import { Product } from "@ck/utils/types/product";
+import { ProductSanitized } from "@ck/utils/types/product";
 
-export const ProductCard = ({ children, button }: { children: Product, button?: { text: string, url: string, init?: RequestInit } }) => {
+export const ProductCard = ({ children, button }: { children: ProductSanitized, button?: { text: string, url: string, init?: RequestInit } }) => {
   return (
     <a className="cursor-pointer" href={`/product/${children._id}`}>
       <div className="w-72 h-[300px] bg-red-300 rounded-xl p-4 hover:outline outline-red-400 rounded-xl flex flex-col items-start">
