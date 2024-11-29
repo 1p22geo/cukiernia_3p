@@ -1,8 +1,8 @@
-import { Product } from "@ck/utils/types/product";
+import { ProductDataWithAverage } from "@ck/lib/loadProduct";
 import Image from "next/image";
 import Link from "next/link";
 
-export const ProductInfo = ({ product }: { product: Product }) => {
+export const ProductInfo = ({ product }: { product: ProductDataWithAverage }) => {
   return (
     <div>
       <Link href="/" className="text-right w-full block hover:underline font-semibold">
@@ -31,6 +31,7 @@ export const ProductInfo = ({ product }: { product: Product }) => {
       <ul className="list-disc p-2 px-4">
         <li>Kategoria: {product.category}</li>
         <li>Producent: {product.supplier}</li>
+        <li>Średnia ocen: {(product.avgRating ?? 0).toFixed(2)}</li>
         <li>Dodano: {new Date(product.added).toISOString()}</li>
       </ul>
 

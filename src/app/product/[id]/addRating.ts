@@ -1,12 +1,12 @@
 import { User } from "@ck/utils/types/auth";
 import { Product } from "@ck/utils/types/product";
-import { MongoClient, ObjectId, WithId, WithoutId } from "mongodb";
-import { NextRequest, NextResponse } from "next/server";
+import { MongoClient, ObjectId, WithoutId } from "mongodb";
 import { env } from "process";
 
 
-export const addComment = async (uid: ObjectId, cid: ObjectId, content: string) => {
+export const addRating = async (uid: ObjectId, cid: ObjectId, content: number) => {
   "use server"
+  console.log(uid, cid, content)
   const uri = env.MONGODB_URI
     ? env.MONGODB_URI
     : (() => {
@@ -27,15 +27,11 @@ export const addComment = async (uid: ObjectId, cid: ObjectId, content: string) 
     _id: cid
   }, {
     $addToSet: {
-      comments: {
-        poster: u.username,
-        posted: Date.now(),
-        contents: content
-      }
+      ratings: content
     }
   })
 
   await client.close();
 }
 
-export const createAddComment = (uid: ObjectId | string, cid: ObjectId | string) => async (e: FormData) => { "use server"; addComment(new ObjectId(uid), new ObjectId(cid), e.get("contents")?.toString() ?? "") }
+export const createAddRating = (uid: ObjectId | string, cid: ObjectId | string, num: number) => async () => { "use server"; addRating(new ObjectId(uid), new ObjectId(cid), num) }

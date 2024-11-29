@@ -10,6 +10,7 @@ export interface Product {
   price: number;
   added: number;
   comments: Comment[];
+  ratings: number[];
 }
 
 export interface ProductSanitized {
@@ -21,6 +22,7 @@ export interface ProductSanitized {
   price: number;
   added: number;
   comments: CommentSanitized[];
+  ratings: number[];
 }
 
 

@@ -9,6 +9,7 @@ import { LoadingGIF } from "@ck/components/loadingGIF";
 import { createAddProduct } from "@ck/lib/addProduct";
 import { UserRouteResponse } from "@ck/app/api/user/route";
 import { addComment, createAddComment } from "./addComment";
+import { createAddRating } from "./addRating";
 
 export default async function ProductPage({
   params,
@@ -56,13 +57,25 @@ export default async function ProductPage({
               <label htmlFor="submit" className="bg-red-500 hover:bg-red-600 p-1 rounded-md cursor-pointer">Dodaj do koszyka</label>
             </form>
 
-            <h2 className="mt-4 font-bold text-lg"> Comments</h2>
+            <h2 className="mt-4 font-bold text-lg"> Zostaw ocenę</h2>
+            <div className="flex flex-row gap-2 m-4">
+              {
 
+                Array(5).fill(0).map((_, ix) => {
+                  return <form key={ix} action={createAddRating(login.user._id, id, ix + 1)}>
+                    <input type="submit" id={`submit-${ix}`} className="sr-only" />
+                    <label htmlFor={`submit-${ix}`} className="bg-red-500 hover:bg-red-600 w-8 h-8 p-1 block rounded-full cursor-pointer text-center">{ix + 1}</label>
+                  </form>
+                })
+              }
+            </div>
+
+            <h2 className="mt-4 font-bold text-lg"> Komentarze</h2>
             <form action={createAddComment(login.user._id, id)}>
               <textarea name="contents" className="border border-black" rows={10} cols={100} />
               <input type="submit" id="submit.2" className="sr-only" />
               <br />
-              <label htmlFor="submit.2" className="bg-red-500 hover:bg-red-600 p-1 rounded-md cursor-pointer">Post comment</label>
+              <label htmlFor="submit.2" className="bg-red-500 hover:bg-red-600 p-1 rounded-md cursor-pointer">Dodaj komentarz</label>
             </form>
 
             {
