@@ -41,10 +41,7 @@ export const ProductFeed = async ({ login }: { login: UserRouteResponse }) => {
         <div className="flex flex-row items-center gap-4">
           {list.map((produkt) => (
             <div key={produkt._id}>
-              <ProductCard button={{
-                node: <>Dodaj do koszyka</>,
-                action: createAddProduct(produkt._id, login.user._id)
-              }}>{produkt}</ProductCard>
+              <ProductCard>{produkt}</ProductCard>
             </div>
           ))}
         </div>
