@@ -27,7 +27,10 @@ export const ProductFeed = async ({ login }: { login: UserRouteResponse }) => {
         },
       },
     ])
-    .toArray()) as Product[]; // trust me bro, the database entries follow the schema
+    .toArray()).map((prod) => ({
+      ...prod,
+      _id: prod._id.toString()
+    })) as Product[]; // trust me bro, the database entries follow the schema
 
   await client.close();
 

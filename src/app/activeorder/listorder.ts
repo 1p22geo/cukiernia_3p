@@ -15,7 +15,7 @@ export const listOrder = async (ids: ObjectId[]): Promise<Product[]> => {
   const products = db.collection("products");
 
 
-  const res = await products.aggregate([
+  const res = (await products.aggregate([
     {
       $match:
       {
@@ -26,7 +26,10 @@ export const listOrder = async (ids: ObjectId[]): Promise<Product[]> => {
         }
       }
     }
-  ]).toArray()
+  ]).toArray()).map((prod) => ({
+    ...prod,
+    _id: prod._id.toString()
+  }))
 
   await client.close()
 
