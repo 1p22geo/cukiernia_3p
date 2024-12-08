@@ -1,8 +1,8 @@
-import { Product } from "@ck/utils/types/product";
+import { Product, ProductSanitized } from "@ck/utils/types/product";
 import { MongoClient, ObjectId } from "mongodb";
 import { env } from "process";
 
-export const listOrder = async (ids: ObjectId[]): Promise<Product[]> => {
+export const listOrder = async (ids: ObjectId[]): Promise<ProductSanitized[]> => {
   const uri = env.MONGODB_URI
     ? env.MONGODB_URI
     : (() => {
@@ -33,5 +33,5 @@ export const listOrder = async (ids: ObjectId[]): Promise<Product[]> => {
 
   await client.close()
 
-  return res as unknown as Product[]
+  return res as unknown as ProductSanitized[]
 }

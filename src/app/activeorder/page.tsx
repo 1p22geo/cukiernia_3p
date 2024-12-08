@@ -6,8 +6,9 @@ import { LoadingGIF } from "@ck/components/loadingGIF";
 import { UserRouteResponse } from "../api/user/route";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { OrderInfo } from "./orderinfo";
+import { OrderInfo } from "../../components/orderInfo";
 import { listOrder } from "./listorder";
+import { createOrderAction } from "./action";
 
 export default async function ActiveOrderPage() {
   const ck = await cookies();
@@ -20,6 +21,8 @@ export default async function ActiveOrderPage() {
       })
     ).json();
   }
+
+  const products = login ? await listOrder(login.user.activeorder) : []
   return (
     <div>
       <Header user={login?.user ? login.user.username : null} />
@@ -40,11 +43,31 @@ export default async function ActiveOrderPage() {
             <Link className="mb-4 font-semibold block text-right" href="/">
               Wróć na stronę główną
             </Link>
-            <OrderInfo products={await listOrder(login.user.activeorder)} />
+
+            <Link className="mb-4 font-semibold block text-right" href="/orders">
+              Historia zamówień
+            </Link>
+
+            {
+              products.length ? <>
+
+                <h2 className="font-bold text-xl">Twój koszyk</h2>
+                <OrderInfo products={products} />
+                <form action={createOrderAction(login, products)}>
+                  <h2 className="mt-4 font-bold text-lg">Złóż zamówienie:</h2>
+                  <input placeholder="Adres zamówienia?" name="address" className="p-1 border" />
+                  <input placeholder="Port zamówienia?" name="port" className="p-1 border" />
+                  <span className="block text-gray-400 text-sm">
+                    tu powinny być inne dane ale to tylko prototyp i nie ma żadnych zamówień
+                  </span>
+                  <input id="order-submit" type="submit" className="sr-only" />
+                  <label htmlFor="order-submit"><button className="bg-red-500 mt-auto hover:bg-red-600 p-1 rounded-md cursor-pointer mt-4">Wyślij zamówienie</button></label>
+                </form>
+              </> : <><h2 className="font-bold text-lg">Brak produktów w koszyku</h2></>}
           </Suspense>
         ) : redirect("/")
         }
       </div>
-    </div>
+    </div >
   );
 }
