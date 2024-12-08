@@ -1,4 +1,5 @@
 import { ObjectId } from "mongodb";
+
 export interface UserRouteResponse {
   type: string;
   user: {
@@ -43,3 +44,4 @@ export interface SessionSanitized {
   created: number;
   expire: number;
 }
+
