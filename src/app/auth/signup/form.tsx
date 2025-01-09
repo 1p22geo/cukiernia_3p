@@ -8,13 +8,13 @@ export const SignupForm = () => {
   return (
     <div className="flex flex-col items-center">
       <h2 className="text-lg font-bold mb-2">
-        Sign up if you don&apos;t have an account
+        ZAREJESTRUJ SIĘ
       </h2>
-      <label htmlFor="email">E-mail address</label>
+      <label htmlFor="email">Adres E-mail</label>
       <input id="email" name="email" />
       <label htmlFor="username">Username</label>
       <input id="username" name="username" />
-      <label htmlFor="password">Password</label>
+      <label htmlFor="password">Hasło</label>
       <input id="password" name="password" type="password" />
       <label htmlFor="submit">
         <div
@@ -23,7 +23,7 @@ export const SignupForm = () => {
             setloading((x) => !x);
           }}
         >
-          Sign up
+          Dalej
         </div>
       </label>
       <LoadingGIF hidden={!loading} />
