@@ -1,0 +1,15 @@
+.cart_link{
+    width: 140px;
+    display: flex;
+    background-color: #f87171;
+    padding: 1em;
+    border-radius: 5px;
+}
+
+.cart_link:hover{
+    background-color: white;
+}
+
+.cart_link>img{
+    height: 20px;
+}

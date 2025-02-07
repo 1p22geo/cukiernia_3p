@@ -1,0 +1,9 @@
+.smol_menu{
+    display: flex;
+    gap: 10px;
+}
+
+.smol_menu{
+    background-color: #f87171;
+    border-radius: 5px;
+}
