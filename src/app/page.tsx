@@ -7,6 +7,9 @@ import { Suspense } from "react";
 import { LoadingGIF } from "@ck/components/loadingGIF";
 import { UserRouteResponse } from "./api/user/route";
 import Link from "next/link";
+import cart from "./cart.svg"
+import Image from "next/image"
+import './page.css'
 
 export default async function Home() {
   const ck = await cookies();
@@ -36,8 +39,9 @@ export default async function Home() {
               </>
             }
           >
-            <Link className="mb-4 font-semibold block text-right" href="/activeorder">
-              Koszyk ({login.user.activeorder.length} produktów)
+            <Link className="mb-4 font-semibold cart_link" href="/activeorder">
+            <Image src={cart} alt="Shopping carg image you big blind f*cker"></Image>
+              Koszyk({login.user.activeorder.length})
             </Link>
             <ProductFeed login={login} />
           </Suspense>

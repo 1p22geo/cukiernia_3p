@@ -9,6 +9,7 @@ import { redirect } from "next/navigation";
 import { OrderInfo } from "../../components/orderInfo";
 import { listOrder } from "./listorder";
 import { createOrderAction } from "./action";
+import './koszyk.css';
 
 export default async function ActiveOrderPage() {
   const ck = await cookies();
@@ -40,14 +41,15 @@ export default async function ActiveOrderPage() {
               </>
             }
           >
-            <Link className="mb-4 font-semibold block text-right" href="/">
+            <div className="smol_menu">
+            <Link className="mb-4 font-semibold block text-right " href="/">
               Wróć na stronę główną
             </Link>
 
             <Link className="mb-4 font-semibold block text-right" href="/orders">
               Historia zamówień
             </Link>
-
+            </div>
             {
               products.length ? <>
 

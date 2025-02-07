@@ -3,6 +3,7 @@ import { ProductCard } from "@ck/components/productCard";
 import { Product, ProductSanitized } from "@ck/utils/types/product";
 import { MongoClient } from "mongodb";
 import { env } from "process";
+import './feed.css';
 
 export const ProductFeed = async ({ login }: { login: UserRouteResponse }) => {
   const uri = env.MONGODB_URI
@@ -36,7 +37,7 @@ export const ProductFeed = async ({ login }: { login: UserRouteResponse }) => {
   return (
     <div className="flex flex-col items-center gap-8 w-full">
       <div className="w-full">
-        <h2>
+        <h2 className="choices">
           Wybór dla ciebie,{" "}
           <span className="italic">{login.user.username}</span>
         </h2>
