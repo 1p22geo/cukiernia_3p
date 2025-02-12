@@ -8,6 +8,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { listOrders } from "./listorders";
 import { OrderInfo } from "@ck/components/orderInfo";
+import './listorders.css'
 
 export default async function OrdersList() {
   const ck = await cookies();
@@ -39,7 +40,7 @@ export default async function OrdersList() {
               </>
             }
           >
-            <Link className="mb-4 font-semibold block text-right" href="/">
+            <Link className="back mb-4 font-semibold block text-right" href="/">
               Wróć na stronę główną
             </Link>
 

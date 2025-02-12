@@ -41,7 +41,7 @@ export const ProductFeed = async ({ login }: { login: UserRouteResponse }) => {
           Wybór dla ciebie,{" "}
           <span className="italic">{login.user.username}</span>
         </h2>
-        <div className="flex flex-row items-center gap-4">
+        <div className="feed">
           {list.map((produkt) => (
             <div key={produkt._id}>
               <ProductCard button={{ text: "Dodaj do koszyka", url: `/api/order/${produkt._id}/add`, init: { method: "POST" } }}>{produkt}</ProductCard>

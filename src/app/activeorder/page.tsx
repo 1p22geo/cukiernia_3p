@@ -42,11 +42,11 @@ export default async function ActiveOrderPage() {
             }
           >
             <div className="smol_menu">
-            <Link className="mb-4 font-semibold block text-right " href="/">
+            <Link className="back mb-4 font-semibold block text-right " href="/">
               Wróć na stronę główną
             </Link>
 
-            <Link className="mb-4 font-semibold block text-right" href="/orders">
+            <Link className="back mb-4 font-semibold block text-right" href="/orders">
               Historia zamówień
             </Link>
             </div>
