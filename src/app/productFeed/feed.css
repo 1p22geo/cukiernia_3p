@@ -1,0 +1,9 @@
+.choices{
+    margin-bottom: 10px;
+    text-shadow: 1.5px 1.5px rebeccapurple;
+}
+
+.feed{
+    display: flex;
+    gap: 10px;
+}

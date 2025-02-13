@@ -1,0 +1,11 @@
+.back{
+    width: fit-content;
+    background-color: rgb(205, 32, 90);
+    padding: 0.6em;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.back:hover{
+    background-color: #e5a5bc
+}

@@ -40,8 +40,8 @@ section{
     background-color: white;
 }
 
-.info>img{
-    width:30%;
+.info>Image{
+    margin: 20px;    
 }
 
 .info>p{
